@@ -42,6 +42,9 @@ function agregarTweet(e) {
 }
 
 function mostrarMensaje(mensaje) {
+  const pErr = document.querySelector('.error');
+  if(pErr) return;
+
   const err = document.createElement('P');
   err.classList.add('error');
   err.textContent = mensaje;
@@ -87,6 +90,10 @@ function sincronizarStorage() {
 
 function borrarTweets(e) {
   const id = e.target.parentElement.dataset.tweetId;
-  tweets = tweets.filter( tweet => tweet.id != id);
-  crearHTML();
+  const respuesta = confirm('Desea eliminar este tweet permanentemente?');
+
+  if(respuesta){
+    tweets = tweets.filter( tweet => tweet.id != id);
+    crearHTML();
+  }
 }
