@@ -98,6 +98,25 @@ function borrarTweets(e) {
     if(respuesta){
       tweets = tweets.filter( tweet => tweet.id != id);
       crearHTML();
+      successMessage();
     }
   }
+}
+
+function successMessage(){
+  const succesMsj = document.querySelector('.succesMsj');
+  if(succesMsj) return; // previene duplicidad de mensajes
+
+  const divMensaje = document.createElement('DIV');
+  divMensaje.classList.add('succesMsj');
+  divMensaje.textContent = 'Tweet Eliminado Correctamente';
+
+  const parentDiv = document.querySelector('.container');
+  const childElement = document.querySelector('.row');
+  parentDiv.insertBefore(divMensaje, childElement);
+
+  setTimeout(() => {
+    divMensaje.remove();
+  }, 3000);
+
 }
