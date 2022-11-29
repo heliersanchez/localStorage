@@ -90,10 +90,14 @@ function sincronizarStorage() {
 
 function borrarTweets(e) {
   const id = e.target.parentElement.dataset.tweetId;
-  const respuesta = confirm('Desea eliminar este tweet permanentemente?');
+  const eliminar = e.target.classList.contains('borrar-tweet');
+  
+  if(eliminar){
+    const respuesta = confirm('Desea eliminar este tweet permanentemente?');
 
-  if(respuesta){
-    tweets = tweets.filter( tweet => tweet.id != id);
-    crearHTML();
+    if(respuesta){
+      tweets = tweets.filter( tweet => tweet.id != id);
+      crearHTML();
+    }
   }
 }
